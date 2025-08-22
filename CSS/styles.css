@@ -1,0 +1,172 @@
+/* Si navigateur supporte les polices variables */
+@supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif;
+        --font-txt: InterVariable, sans-serif;}}
+
+:root{
+    --font-txt: Inter, sans-serif;
+    --title-size: clamp(1.5rem, calc(5vw + 0.5rem), 3.2rem);
+    --txt-size-1: 1.1rem; 
+    --txt-size-2: 0.9rem;
+
+    /* LIGHT MODE */
+    --slect-clr: #a787ff;
+    --clr-body: hsl(0, 0%, 98%);
+    --bg-dark : hsl(0, 0%, 95%);
+    --bg-light: hsl(0, 0%, 100%);     
+    --accent-clr: #7808d0;
+    --clr-txt-1: hsl(0, 0%, 8%);
+    --clr-txt-2: hsl(0, 0%, 44%);    
+    --clr-nav-bg: hsla(0, 0%, 82%, 0.7);
+    --clr-border: hsl(0, 0%, 91%);
+}
+/* DARK MODE
+@media (prefers-color-scheme: dark) {
+  :root {
+    --slect-clr: #a198a8;
+    --clr-body: hsl(0, 0%, 2%);
+    --bg-dark : hsl(0, 0%, 5%); 
+    --bg-light: hsl(0, 0%, 10%); 
+
+    --clr-txt-1: hsl(0, 0%, 92%);
+    --clr-txt-2: hsl(0, 0%, 66%);
+
+    --clr-nav-bg: hsla(0, 0%, 0%, 1);
+    --clr-border: hsl(0, 0%, 30%);
+}} */
+
+* { margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;} 
+
+::selection {
+    background-color: var(--slect-clr);
+    color: var(--clr-txt-1);}
+
+body {
+    background: var(--clr-body);
+    font: var(--txt-size-1) var(--font-txt);
+    color: var(--clr-txt-1);
+    -webkit-font-smoothing: antialiased;}
+
+h1 {font: bold var(--title-size) var(--font-txt);
+    letter-spacing: -0.02em;}
+
+p { font:  var(--txt-size-1) var(--font-txt);
+    line-height: var(--txt-line-height);
+    color: var(--clr-txt-2);}
+
+a { font: var(--txt-size-1) var(--font-txt);
+    color: var(--clr-txt-1);
+    text-decoration: none;
+    transition: all 0.25s ease-out, transform 0.1s ease;}
+
+section{
+  padding: 0 10vw;
+  width: 100%;
+  transition: all 0.5s ease;}
+
+/* ABOUT */
+#presentation {
+  gap: 5vh;
+  padding-top: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#presentation h1 {
+  letter-spacing: -0.03em;
+  font-size: 2.4rem;
+}
+#presentation h1 .name {
+  font-size: 2.2rem;
+  color: var(--clr-txt-2);}
+
+.img-profil {
+  width: 5rem;
+  height: auto;
+  border-radius: 50%;
+  margin-left:-0.5rem;
+}
+.about-me {
+  background-color: var(--bg-dark);
+  border-radius: 20px;
+  padding: 1.8rem 2rem;
+}
+.about-me h2 { 
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;}
+
+.about-me p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--clr-txt-2);
+}
+
+
+
+
+#projet {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+
+
+
+
+
+.reveal {
+  scale: 0;
+  filter : blur(15px);
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+.reveal.visible {
+  scale: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* FOOTER */
+footer {
+  height: 15vh;
+  margin: 0 10vw;
+  padding: 1.5rem 0;
+  border-top: 1.5px solid #dbdbdb;
+  display: flex;
+  justify-content: space-between;
+}
+/* FOOTER DETAILS (credits & links) */
+footer .credits p{
+  font-size: 0.9rem;
+}
+footer .social-links ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+footer .social-links ul li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+footer .social-links ul li i {
+    font-size: 1rem;
+    color: var(--clr-txt-2);
+}
+footer .social-links ul li a {
+    font-size: 0.9rem;
+    color: var(--clr-txt-2);
+    transition: all 0.3s ease;
+    text-decoration: none;          
+    border-bottom: 1.9px solid #dbdbdb;
+    transition: all 0.2s ease;
+}
+footer .social-links ul li a:hover { border-color: #b3b3b3; }
