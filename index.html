@@ -13,56 +13,105 @@
     <link rel="icon" type="image/x-icon" href="Assets/memoji.png"/>
     <meta name="description" content="Portfolio d'Enzo Boucetta-Hervieux, étudiant en ingénierie informatique." />
   </head>
+
   <body>
     <section id="presentation">
         <img class="img-profil" src="Assets/memoji.png" alt="Photo de profil"/>
 
         <h1><span class="name">Enzo Boucetta Hervieux</span>
-            <br>
-            Étudiant en prépa ingénieur, 
-            <br>
-            spécialité informatique.
+            <br>Étudiant en prépa ingénieur, 
+            <br>spécialité informatique.
         </h1>
-        
-        <div class="scroll-down"></div>
 
-        <div class="about-me">
-          <h2>About me</h2>
-          <p>Étudiant en classe préparatoire intégré à CESI Rouen en mineur informatique, je souhaite m’orienté vers la data. 
-            Passionné par l’informatique et les nouvelles technologies, avec une solide capacité à collaborer avec des équipes
-           interdisciplinaires et à livrer des projets dans les délais impartis.</p>
+        <div class="contact-links">
+            <!-- mail -->
+            <a href="mailto:enzoboucettahervieux@gmail.com"  rel="noopener noreferrer">
+            <i class='bx bxl-gmail'></i></a>
+            <!-- github -->
+            <a href="https://github.com/Enzo-BH" target="_blank" rel="noopener noreferrer">
+            <i class='bx bxl-github'></i></a>
+            <!-- linkdin -->
+            <a href="https://www.linkedin.com/in/enzo-boucetta-hervieux-827313316/" target="_blank" rel="noopener noreferrer">
+            <i class='bx bxl-linkedin-square' ></i></a>
         </div>
+
+        <article class="about-me">
+          <h2>A propos</h2>
+          <p>Étudiant en classe préparatoire intégré à CESI Rouen en mineur informatique, 
+            je souhaite m’orienté vers la data. Passionné par l’informatique et les nouvelles 
+            technologies, avec une solide capacité à collaborer avec des équipes interdisciplinaires 
+            et à livrer des projets dans les délais impartis.
+          </p>
+        </article>
+        
     </section>
 
-    <!-- Projects Section -->
+    <!-- PROJECTS -->
     <section id="projet"> 
-      <a href="sms:0650746250?body=thank you">Send a sms</a>
-      <a href="mailto:enzoboucettahervieux@gmail.com">Send a mail</a>
-    </section>
+      <h1>Projets</h1>
+
+    <!-- Escape No Game -->
+      <article class="projet">
+        <div class="img"><img src="Assets/EscapeNoGame.png" alt="illustration"/></div>
+        <div class="txt">
+          <h2>Escape No Game</h2>
+          <p>Développement en Python d’un système de communication basé sur la modulation numérique, intégrant les techniques ASK (Amplitude Shift Keying) et FSK (Frequency Shift Keying) avec encodage Manchester.
+          </p>
+          <h5>Python (Numpy)</h5>
+        </div>
+      </article>
+
+    <!-- BDD -->
+       <article class="projet">
+        <div class="txt">
+          <h2>BDD</h2>
+          <p>Conception et implémentation complète d’une base de données relationnelle, incluant la modélisation conceptuelle (MCD), logique (MLD) et physique. La base a été alimentée avec des données représentatives et exploitée via des requêtes SQL optimisées.
+          </p>
+          <h5>MySQL (Workbench, Command Line)</h5>
+        </div>
+        <div class="img"><img src="Assets/EscapeNoGame.png" alt="illustration"/></div>
+      </article>
+
+    <!-- Strongbox3000 -->
+      <article class="projet">
+        <div class="img"><img src="Assets/EscapeNoGame.png" alt="illustration"/></div>
+        <div class="txt">
+          <h2>Strongbox 3000</h2>
+          <p>Développement embarqué sur microcontrôleur Arduino pour la mise en œuvre de méthodes de vérification matérielles via capteurs et actionneurs.
+          </p>
+          <h5>Arduino (C++, IDE)</h5>
+        </div>
+      </article>
 
 
 
 
     
     <footer>
-        <div class="credits">
-            <p>©2025 Enzo BH.</p>
-        </div>
+        <div class="credits"> <p>©2025 Enzo BH.</p> </div>
 
+        <!-- LIENS RESEAUX -->
         <div class="social-links">
           <ul>
-            
-            <li><i class='bx bxl-github'></i>
+            <li>
+              <i class='bx bxl-gmail'></i>
+              <a href="mailto:enzoboucettahervieux@gmail.com"  rel="noopener noreferrer">
+              mail</a>
+            </li>
+
+            <li>
+              <i class='bx bxl-github'></i>
               <a href="https://github.com/Enzo-BH" target="_blank" rel="noopener noreferrer">
-              Enzo-BH</a></i></li>
+              Github</a>
+            </li>
 
             <li>
               <i class='bx bxl-linkedin-square' ></i>
               <a href="https://www.linkedin.com/in/enzo-boucetta-hervieux-827313316/" target="_blank" rel="noopener noreferrer">
-              Linkedin</a></li>
-
-          </ul>
-        </div>
+              Linkedin</a>
+            </li>
+          </ul></div>
     </footer>
+
   </body>
 </html>

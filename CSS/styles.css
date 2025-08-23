@@ -10,11 +10,11 @@
     --txt-size-2: 0.9rem;
 
     /* LIGHT MODE */
-    --slect-clr: #a787ff;
+    --slect-clr: #b19ee3;
     --clr-body: hsl(0, 0%, 98%);
     --bg-dark : hsl(0, 0%, 95%);
     --bg-light: hsl(0, 0%, 100%);     
-    --accent-clr: #7808d0;
+    --accent-clr: #681aa3;
     --clr-txt-1: hsl(0, 0%, 8%);
     --clr-txt-2: hsl(0, 0%, 44%);    
     --clr-nav-bg: hsla(0, 0%, 82%, 0.7);
@@ -50,7 +50,7 @@ body {
     color: var(--clr-txt-1);
     -webkit-font-smoothing: antialiased;}
 
-h1 {font: bold var(--title-size) var(--font-txt);
+h1 {font: 600 var(--title-size) var(--font-txt);
     letter-spacing: -0.02em;}
 
 p { font:  var(--txt-size-1) var(--font-txt);
@@ -65,18 +65,29 @@ a { font: var(--txt-size-1) var(--font-txt);
 section{
   padding: 0 10vw;
   width: 100%;
-  transition: all 0.5s ease;}
+  margin-bottom: 5rem;
+}
+@media (max-width: 768px) {
+  section{
+  padding: 0 8vw;
+  }
+}
+
+article{cursor:crosshair;}
 
 /* ABOUT */
 #presentation {
-  gap: 5vh;
-  padding-top: 15vh;
+  padding-top: 9vh;
+  padding-bottom: 9vh;
+  height: auto;
+  gap: 4.5vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 5rem;
 }
 #presentation h1 {
-  letter-spacing: -0.03em;
+  letter-spacing: -0.015em;
   font-size: 2.4rem;
 }
 #presentation h1 .name {
@@ -84,6 +95,7 @@ section{
   color: var(--clr-txt-2);}
 
 .img-profil {
+  user-select: none;
   width: 5rem;
   height: auto;
   border-radius: 50%;
@@ -103,16 +115,109 @@ section{
   line-height: 1.5;
   color: var(--clr-txt-2);
 }
+.contact-links {
+  display: inline-flex;
+  gap: 1.5rem;
+}
+.contact-links a {
+  margin-left: 0.5rem;
+  background-color: var(--bg-dark);
+  padding: 0.6rem 0.7rem;
+  border-radius: 20rem;
+  color: var(--clr-txt-2);
+}
 
 
+@media (max-width: 768px) {
+  .img-profil {
+  width: 4rem;
+}
+  #presentation h1 {
+  letter-spacing: -0.015em;
+  font-size: 1.6rem;
+}
+#presentation h1 .name {
+  font-size: 1.6rem;
+}
+.contact-links a {
+    padding: 0.5rem 0.6rem;
+}
+.about-me{
+  padding: 1.4rem 1.6rem;
+}
+.about-me h2 { 
+  font-size: 1.4rem;}
+
+.about-me p {
+  font-size: 0.9rem;
+}
+}
 
 
 #projet {
-  height: 100vh;
+  height: auto;
+  gap: 4.5vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#projet h1{font-size: 2rem;}
+.projet {
+  width: 100%;
+  background-color: var(--bg-dark);
+  border-radius: 2rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: row; 
+  gap: 5rem;
+  margin-bottom: 5rem;
+}
+
+.txt {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+#projet .txt h2 {
+  font-size: 1.8rem;
+}
+#projet .txt p {
+  font-size: 0.9rem;
+}
+#projet .txt h5 {
+  color: var(--clr-txt-2);
+}
+
+#projet img { 
+  width: 100%; 
+  max-width: 500px; 
+  border-radius: 2rem;
+}
+
+/* --- Media query pour rendre la card responsive --- */
+@media (max-width: 768px) {
+
+  .projet {
+    flex-direction: column;       
+    align-items: center;          
+    text-align: center;           
+    padding: 2rem;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  #projet img {
+    max-width: 90%;
+  }
+  .txt {
+    align-items: center;
+  }
+  #projet .txt h2 {
+  font-size: 1.4rem;
+}
 }
 
 
@@ -134,8 +239,8 @@ section{
 
 /* FOOTER */
 footer {
+  width: 100%;
   height: 15vh;
-  margin: 0 10vw;
   padding: 1.5rem 0;
   border-top: 1.5px solid #dbdbdb;
   display: flex;
@@ -169,4 +274,30 @@ footer .social-links ul li a {
     border-bottom: 1.9px solid #dbdbdb;
     transition: all 0.2s ease;
 }
-footer .social-links ul li a:hover { border-color: #b3b3b3; }
+footer .social-links ul li a:hover { border-color: #979797; }
+
+@media (max-width: 768px) {
+  footer .credits p{
+  font-size: 0.7rem;
+  }
+  footer .social-links ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:end;
+    gap: 1rem;
+  }
+  footer .social-links ul li a {
+    font-size: 0.7rem;
+  }
+
+}
+
+
+
+/* SCROLL BAR */
+::-webkit-scrollbar{ width: 12px; }
+::-webkit-scrollbar-track{ background-color: var(--clr-body);}
+::-webkit-scrollbar-thumb{ background-color: var(--clr-txt-2);
+                           border-radius: 6rem; }
