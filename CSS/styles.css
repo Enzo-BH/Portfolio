@@ -191,7 +191,10 @@ article{cursor:crosshair;}
 #projet .txt h5 {
   color: var(--clr-txt-2);
 }
-
+#projet .img { 
+  display: flex;
+  justify-content: center;
+}
 #projet img { 
   width: 100%; 
   max-width: 500px; 
