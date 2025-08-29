@@ -13,16 +13,18 @@
     <link rel="icon" type="image/x-icon" href="Assets/memoji.png"/>
     <meta name="description" content="Portfolio d'Enzo Boucetta-Hervieux, étudiant en ingénierie informatique." />
   </head>
-
   <body>
+    <!---------------- PRESENTATION ---------------->
     <section id="presentation">
+        <!-- memoji -->
         <img class="img-profil" src="Assets/memoji.png" alt="Photo de profil"/>
-
-        <h1><span class="name">Enzo Boucetta Hervieux</span>
-            <br>Étudiant en prépa ingénieur, 
-            <br>spécialité informatique.
+        <!-- nom prenom etudiant... -->
+        <h1>
+          <span class="name">Enzo Boucetta Hervieux</span>
+          <br>Étudiant en prépa ingénieur, 
+          <br>spécialité informatique.
         </h1>
-
+        <!-- bulles de contact -->
         <div class="contact-links">
             <!-- mail -->
             <a href="mailto:enzoboucettahervieux@gmail.com"  rel="noopener noreferrer">
@@ -34,59 +36,106 @@
             <a href="https://www.linkedin.com/in/enzo-boucetta-hervieux-827313316/" target="_blank" rel="noopener noreferrer">
             <i class='bx bxl-linkedin-square' ></i></a>
         </div>
-
+        <!-- A propos -->
         <article class="about-me">
-          <h2>A propos</h2>
+          <h2>A propos <img src="Assets/infos.png" alt="icon infos"></h2>
           <p>Étudiant en classe préparatoire intégré à CESI Rouen en mineur informatique, 
             je souhaite m’orienté vers la data. Passionné par l’informatique et les nouvelles 
             technologies, avec une solide capacité à collaborer avec des équipes interdisciplinaires 
             et à livrer des projets dans les délais impartis.
           </p>
         </article>
-        
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projet"> 
+    <!---------------- SKILLS ---------------->
+    <section id="competences">
+      <h1>Compétences</h1>
+      <div class="scroll">
+        <div class="item item1"><img src="Assets/python-logo.svg" alt="icon python"><p>Python</p></div>
+        <div class="item item2"><img src="Assets/mysql-logo.svg" alt="icon mysql"><p>MySql</p></div>
+        <div class="item item3"><img src="Assets/arduino-logo.svg" alt="icon arduino"><p>Arduino</p></div>
+        <div class="item item4"><img src="Assets/excel-logo.svg" alt="icon excel"><p>Excel</p></div>
+        <div class="item item5"><img src="Assets/github-logo.svg" alt="icon github"><p>GitHub</p></div>
+        <div class="item item6"><img src="Assets/html-logo.svg" alt="icon html"><p>Html</p></div>
+        <div class="item item7"><img src="Assets/css-logo.svg" alt="icon css"><p>Css</p></div>
+        <div class="item item8"><img src="Assets/javascript-logo.svg" alt="icon javascript"><p>JavaScript</p></div>
+      </div> 
+   </section>
+
+
+    <!---------------- PROJECTS ---------------->
+    <section id="projets"> 
       <h1>Projets</h1>
+      <!-- div de tous les projets -->
+      <div class="list-projet">
+        <!-- Escape No Game -->
+        <article class="projet">
+          <div class="txt">
+            <h2>Escape No Game <img src="Assets/microphone.png" alt=""></h2>
+            <p>
+              Développement en Python d’un système de communication basé sur la modulation numérique, intégrant les techniques ASK (Amplitude Shift Keying) et FSK (Frequency Shift Keying) avec encodage Manchester.
+            </p>
+            <h5>Python (Matplotlib, Numpy)</h5>
+            <!-- btn lien code -->
+            <a class="link-btn-code" href="">
+              <button>
+                <i class='bx bxl-github'></i> Code
+              </button>
+            </a>
+          </div>
+        </article>
 
-    <!-- Escape No Game -->
-      <article class="projet">
-        <div class="img"><img src="Assets/EscapeNoGame.png" alt="illustration"/></div>
-        <div class="txt">
-          <h2>Escape No Game</h2>
-          <p>Développement en Python d’un système de communication basé sur la modulation numérique, intégrant les techniques ASK (Amplitude Shift Keying) et FSK (Frequency Shift Keying) avec encodage Manchester.
-          </p>
-          <h5>Python (Numpy)</h5>
+        <!-- BDD -->
+        <article class="projet">
+          <div class="txt">
+            <h2>BDD<img src="Assets/database.png" alt="icon database"/></h2>
+            <p>
+              Conception et implémentation complète d’une base de données relationnelle, incluant la modélisation conceptuelle (MCD), logique (MLD) et physique. La base a été alimentée avec des données représentatives et exploitée via des requêtes SQL optimisées.
+            </p>
+            <h5>MySQL (Workbench, Command Line)</h5>
+            <!-- btn lien code -->
+            <a class="link-btn-code" href="">
+              <button>
+                <i class='bx bxl-github'></i> Code
+              </button>
+            </a>
+          </div>
+        </article>
+
+        <!-- Strongbox3000 -->
+        <article class="projet">
+          <div class="txt">
+            <h2>Strongbox 3000 <img src="Assets/arduino.png" alt="icon arduino"></h2>
+            <p>
+              Développement embarqué sur microcontrôleur Arduino pour la mise en œuvre de méthodes de vérification matérielles via capteurs et actionneurs.
+            </p>
+            <h5>Arduino (C++, IDE)</h5>
+            <!-- btn lien code -->
+            <a class="link-btn-code" href="">
+              <button>
+                <i class='bx bxl-github'></i> Code
+              </button>
+            </a>
+          </div>
+        </article>
+
+        <!-- A venir... -->
+        <article class="projet">
+          <div class="txt">
+            <h2>Comming Soon</h2>
+            <img class="trois-point" src="Assets/3point.png" alt="icon 3points">
+            <a class="link-btn-code" href="">
+              <button>
+                wait...
+              </button>
+            </a>
+          </div>
+        </article>
         </div>
-      </article>
-
-    <!-- BDD -->
-       <article class="projet">
-        <div class="txt">
-          <h2>BDD</h2>
-          <p>Conception et implémentation complète d’une base de données relationnelle, incluant la modélisation conceptuelle (MCD), logique (MLD) et physique. La base a été alimentée avec des données représentatives et exploitée via des requêtes SQL optimisées.
-          </p>
-          <h5>MySQL (Workbench, Command Line)</h5>
-        </div>
-        <div class="img"><img src="Assets/bdd.png" alt="illustration"/></div>
-      </article>
-
-    <!-- Strongbox3000 -->
-      <article class="projet">
-        <div class="img"><img src="Assets/strongbox.svg" alt="illustration"/></div>
-        <div class="txt">
-          <h2>Strongbox 3000</h2>
-          <p>Développement embarqué sur microcontrôleur Arduino pour la mise en œuvre de méthodes de vérification matérielles via capteurs et actionneurs.
-          </p>
-          <h5>Arduino (C++, IDE)</h5>
-        </div>
-      </article>
+      </section> 
 
 
-
-
-    
+    <!---------------- FOOTER ---------------->
     <footer>
         <div class="credits"> <p>©2025 Enzo BH.</p> </div>
 
@@ -95,23 +144,17 @@
           <ul>
             <li>
               <i class='bx bxl-gmail'></i>
-              <a href="mailto:enzoboucettahervieux@gmail.com"  rel="noopener noreferrer">
-              mail</a>
+              <a href="mailto:enzoboucettahervieux@gmail.com">mail</a>
             </li>
-
             <li>
               <i class='bx bxl-github'></i>
-              <a href="https://github.com/Enzo-BH" target="_blank" rel="noopener noreferrer">
-              Github</a>
+              <a href="https://github.com/Enzo-BH">Github</a>
             </li>
-
             <li>
               <i class='bx bxl-linkedin-square' ></i>
-              <a href="https://www.linkedin.com/in/enzo-boucetta-hervieux-827313316/" target="_blank" rel="noopener noreferrer">
-              Linkedin</a>
+              <a href="https://www.linkedin.com/in/enzo-boucetta-hervieux-827313316/">Linkedin</a>
             </li>
           </ul></div>
     </footer>
-
   </body>
 </html>
