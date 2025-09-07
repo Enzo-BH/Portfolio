@@ -234,6 +234,8 @@ margin-bottom: 3rem;}
   background-color: var(--bg-dark);
   border-radius: 2rem;
   padding: 2.5rem;
+  display: flex;
+  justify-content: center;
 }
 
 #projets .list-projet .projet .txt {
@@ -271,14 +273,19 @@ margin-bottom: 3rem;}
   align-items: center;
   gap: 0.4rem;
 }
-#projets .list-projet .projet .txt i{
+#projets .list-projet .projet .txt i {
   font-size: 1rem;
 }
 
-#projets .list-projet .projet .txt .trois-point{
+#projets .list-projet .projet .txt .trois-point {
   width: 6rem;
   margin: 0;
 }
+#projets .list-projet .wait:hover {
+  cursor: progress;
+  user-select: none;
+}
+
 @media (max-width: 768px) {
   #projets .list-projet {
     display: grid;
