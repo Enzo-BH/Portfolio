@@ -50,8 +50,14 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+.about-me .cesi, .about-me .galeries {
+  color: var(--clr-txt-2);
+  text-decoration: none;
+  border-bottom: 1.9px solid #a0a0a0;
+}
+
 section {
-  padding: 0 10vw;
+  padding: 0 15vw;
   width: 100%;
   margin-bottom: 5rem;
 }
@@ -61,7 +67,7 @@ section {
   padding: 0 8vw;}
 }
 
-article { cursor:crosshair; }
+
 
 /*------PRESENTATION------*/
 #presentation {
@@ -156,7 +162,7 @@ article { cursor:crosshair; }
   margin-top: 3rem;
   width: 99%;
   max-width: 1536px;
-  height: 150px;
+  height: 115px;
   position: relative;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(
@@ -177,24 +183,22 @@ article { cursor:crosshair; }
   align-items: center;
   background-color: var(--bg-dark);
   width: 125px;
-  height: 125px;
+  height: 115px;
   border-radius: 1rem;
   position: absolute;
-  left: max(calc(125px * 8),100%);
+  left: max(calc(115px * 6),100%);
   transition: all 0.1s ease-out;
-  animation: scrollLeft 18s linear infinite;
+  animation: scrollLeft 14s linear infinite;
 }
-#competences .scroll .item1 { animation-delay: calc(18s / 8 * (8 - 1) * -1); }
-#competences .scroll .item2 { animation-delay: calc(18s / 8 * (8 - 2) * -1); }
-#competences .scroll .item3 { animation-delay: calc(18s / 8 * (8 - 3) * -1); }
-#competences .scroll .item4 { animation-delay: calc(18s / 8 * (8 - 4) * -1); }
-#competences .scroll .item5 { animation-delay: calc(18s / 8 * (8 - 5) * -1); }
-#competences .scroll .item6 { animation-delay: calc(18s / 8 * (8 - 6) * -1); }
-#competences .scroll .item7 { animation-delay: calc(18s / 8 * (8 - 7) * -1); }
-#competences .scroll .item8 { animation-delay: calc(18s / 8 * (8 - 8) * -1); }
+#competences .scroll .item1 { animation-delay: calc(14s / 6 * (6 - 1) * -1); }
+#competences .scroll .item2 { animation-delay: calc(14s / 6 * (6 - 2) * -1); }
+#competences .scroll .item3 { animation-delay: calc(14s / 6 * (6 - 3) * -1); }
+#competences .scroll .item4 { animation-delay: calc(14s / 6 * (6 - 4) * -1); }
+#competences .scroll .item5 { animation-delay: calc(14s / 6 * (6 - 5) * -1); }
+#competences .scroll .item6 { animation-delay: calc(14s / 6 * (6 - 6) * -1); }
 
 #competences .scroll .item:hover img {
-  width: 45%; }
+  width: 35%; }
 #competences .scroll .item:hover p {
   font-size: 0.85rem; }
 #competences .scroll .item:hover {
@@ -210,7 +214,7 @@ article { cursor:crosshair; }
   @keyframes scrollLeft { to{left: -85px;} }
 }
 
-#competences .scroll .item img { width: 35%; transition: all 0.1s ease-out; }
+#competences .scroll .item img { width: 30%; transition: all 0.1s ease-out; }
 #competences .scroll .item p { font: var(--font-txt); color : var(--clr-txt-1); transition: all 0.1s ease-out; }
 
 
@@ -227,11 +231,12 @@ margin-bottom: 3rem;}
 .list-projet {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  gap: 2rem;
 }
 
 .list-projet .projet {
   background-color: var(--bg-dark);
+  cursor: pointer;
   border-radius: 2rem;
   padding: 2.5rem;
   display: flex;
@@ -244,7 +249,7 @@ margin-bottom: 3rem;}
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 #projets .list-projet .projet .txt h2 {
   font-size: 1.8rem;
@@ -317,8 +322,7 @@ margin-bottom: 3rem;}
 
 /*------FOOTER------*/
 footer {
-  cursor: crosshair;
-  height: 30vh;
+  min-height: 15vh;
   padding: 1.5rem 0;
   margin: 0 10vw;
   border-top: 1.5px solid #dbdbdb;
