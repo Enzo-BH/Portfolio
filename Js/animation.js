@@ -178,12 +178,6 @@ int Grille::CompterVoisinsVivants(int x, int y) const {
         }
     }
     return count;
-}
- 
-// Modification d'une cellule : réutilise les instances globales stateless
-void Grille::ModifCellule(int x, int y, bool vivant) {
-    Cellule* cellule = GetCellulePrecise(x, y);
-    cellule->SetEtat(vivant ? &ETAT_VIVANT : &ETAT_MORT);
 }`
       },
       {
@@ -200,20 +194,20 @@ void Grille::ModifCellule(int x, int y, bool vivant) {
   "escape": {
     titre: "Escape No Game",
     icon: "Assets/microphone.png",
-    tech: "Python · Matplotlib · Numpy",
+    tech: "Python · NumPy · Matplotlib · SoundDevice",
     github: "https://github.com/Enzo-BH/Escape-No-Game/",
     sections: [
       {
         type: "intro",
-        texte: "Système de communication numérique simulé en Python, basé sur la modulation ASK (Amplitude Shift Keying) couplée à un encodage Manchester. Le projet illustre concrètement les principes de transmission de données binaires sur un canal bruité."
+        texte: "Projet réalisé dans le cadre d'un <strong>scénario d'espionnage</strong> : nous incarnions des ingénieurs R&D de l'agence AIL3C, chargés de concevoir un système permettant à un agent isolé de communiquer via un simple micro de salle de conférence. La solution : <strong>cacher un message numérique dans un signal audio</strong> via modulation ASK et encodage Manchester. Un POC complet de chaîne de transmission, implémenté en Python."
       },
       {
         type: "sous-titre",
-        texte: "Modulation ASK"
+        texte: "Chaîne de transmission complète"
       },
       {
         type: "texte",
-        texte: "L'ASK encode chaque bit en faisant varier l'amplitude d'un signal porteur sinusoïdal : amplitude haute pour un '1', amplitude nulle pour un '0'. Simple à implémenter, elle reste sensible au bruit — un bon cas d'étude pour illustrer les limites de la transmission."
+        texte: "<strong>1)</strong> Conversion du texte en binaire (ASCII 8 bits) → <strong>2)</strong> Encodage Manchester → <strong>3)</strong> Modulation ASK sur porteuse sinusoïdale → <strong>4)</strong> Lecture audio du signal → <strong>5)</strong> Démodulation par corrélation → <strong>6)</strong> Décodage Manchester → <strong>7)</strong> Reconstruction du message. Chaque étape est visualisée via Matplotlib."
       },
       {
         type: "sous-titre",
@@ -221,40 +215,130 @@ void Grille::ModifCellule(int x, int y, bool vivant) {
       },
       {
         type: "texte",
-        texte: "L'encodage Manchester garantit la synchronisation entre émetteur et récepteur. Chaque bit est représenté par une transition : front montant pour '1', front descendant pour '0'. Cela élimine les longues séquences identiques et facilite la récupération de l'horloge côté réception."
+        texte: "L'encodage Manchester garantit la synchronisation entre émetteur et récepteur en représentant chaque bit par une <strong>transition de signal</strong> : un '1' devient la séquence <code>[+1, -1]</code>, un '0' devient <code>[-1, +1]</code>. Cela élimine les longues séquences identiques et permet la récupération d'horloge côté réception, sans canal de synchronisation séparé."
+      },
+      {
+        type: "code",
+        label: "Encodage & décodage Manchester",
+        code:
+`def enco_manchester(bits):
+    manchester = []
+    for i in bits:
+        if i == '1':   # 1 → transition descendante [+1, -1]
+            manchester.append(1)
+            manchester.append(-1)
+        elif i == '0': # 0 → transition montante  [-1, +1]
+            manchester.append(-1)
+            manchester.append(1)
+    return manchester
+ 
+def deco_manchester(bits):
+    manchester = ''
+    for i in range(0, len(bits), 2):
+        if bits[i] == 1 and bits[i+1] == -1:
+            manchester += '1'
+        if bits[i] == -1 and bits[i+1] == 1:
+            manchester += '0'
+    return manchester`
+      },
+      {
+        type: "sous-titre",
+        texte: "Modulation ASK & démodulation"
+      },
+      {
+        type: "texte",
+        texte: "Le signal Manchester est modulé en <strong>ASK (Amplitude Shift Keying)</strong> : chaque symbole est multiplié par une porteuse sinusoïdale à 2000 Hz. La démodulation s'effectue par <strong>corrélation</strong> — on multiplie le signal reçu par la porteuse et on intègre sur chaque symbole avec <code>np.trapz</code>. Le signe du résultat détermine le bit reçu. Un système de <strong>détection et correction d'erreurs</strong> compare bit à bit le signal démodulé à l'émis et corrige les divergences."
+      },
+      {
+        type: "code",
+        label: "Modulation ASK & démodulation par corrélation",
+        code:
+`# Paramètres
+baud = 300        # débit (bit/s)
+Fe   = 22_050     # fréquence d'échantillonnage (Hz)
+Fp   = 2_000      # fréquence porteuse (Hz)
+Ns   = int(Fe/baud)  # échantillons par symbole
+ 
+# Modulation ASK : signal Manchester × porteuse sinusoïdale
+Porteuse = np.sin(2 * np.pi * Fp * t)
+ASK = msg_bit_duplique * Porteuse
+ 
+# Démodulation par corrélation (intégration sur chaque symbole)
+Produit = ASK * Porteuse
+res = [int(np.trapz(Produit[i:i+Ns])) for i in range(0, N, Ns)]
+msg_demodule = [1 if r > 0 else -1 for r in res]
+ 
+# Détection & correction d'erreurs bit à bit
+for i in range(len(Erreur)):
+    if not Erreur[i]:
+        msg_demodule[i] = encodage_manchester[i]`
+      },
+      {
+        type: "sous-titre",
+        texte: "Visualisation des étapes"
+      },
+      {
+        type: "texte",
+        texte: "Chaque étape de la chaîne est visualisée via Matplotlib : signal Manchester brut, porteuse sinusoïdale, puis signal ASK modulé. Le signal est également <strong>joué en audio</strong> via SoundDevice — permettant de réellement entendre le message encodé tel qu'il sortirait du haut-parleur de la salle de conférence."
       }
     ]
   },
 
-  "strongbox": {
-    titre: "Strongbox 3000",
-    icon: "Assets/arduino.png",
-    tech: "Arduino · C++ · IDE",
-    github: "https://github.com/Enzo-BH/Strongbox-3000",
+   "funkytown": {
+    titre: "FunkyTown — Architecture réseau",
+    icon: "Assets/funky.webp",
+    tech: "Cisco Packet Tracer · VLAN · IPv6 · DHCP · VTP · VLSM",
+    github: null,
     sections: [
       {
         type: "intro",
-        texte: "Coffre-fort intelligent développé sur microcontrôleur Arduino, combinant plusieurs méthodes d'authentification matérielles : code PIN via clavier, capteur de distance, et retour visuel/sonore. Un projet embarqué de bout en bout, du câblage au code."
+        texte: "Projet réalisé dans le cadre d'un <strong>scénario professionnel</strong> : nous incarnions l'ESN eXia, mandatée par le maire de FunkyTown pour concevoir et déployer l'infrastructure réseau de la ville. 5 sites aux besoins différents, configurés sous <strong>Cisco Packet Tracer</strong> - du réseau d'entreprise classique jusqu'au tunnel IPv6 vers un datacenter cloud."
       },
       {
         type: "sous-titre",
-        texte: "Méthodes d'authentification"
+        texte: "Les 5 sites de la ville"
       },
       {
         type: "texte",
-        texte: "Le système vérifie un code PIN saisi sur un clavier matriciel 4×4. En cas de bonne séquence, un servomoteur déverrouille le mécanisme. Un capteur ultrasonique détecte une tentative d'intrusion et déclenche une alerte sonore via buzzer."
+        texte: "<strong>ESN eXia : </strong> réseau d'entreprise 192.168.1.0/24, serveur DNS/FTP local, borne Wifi sécurisée WPA2, routeur avec accès Web. <strong>Bibliothèque : </strong>  DHCP dynamique, Wifi public ouvert, accès SSH sur les équipements. <strong>Engie  : </strong> segmentation par3 VLANs (Service Technique, Commercial, Wifi invités), adressage VLSM, routage inter-VLAN. <strong>Digiplex : </strong> 8 VLANs, EtherChannel, switch L3, contrôleur Wifi avec deux SSID, VLAN de management SSH. <strong>Datacenter</strong> : réseau maillé FAI, tunnel IPv6 vers un serveur Meraki cloud."
       },
       {
         type: "sous-titre",
-        texte: "Gestion des états"
+        texte: "Plan d'adressage global"
       },
       {
         type: "texte",
-        texte: "Le firmware est organisé autour d'une machine à états : veille, saisie en cours, authentification réussie, alerte. Chaque transition est accompagnée d'un retour visuel sur écran LCD 16×2 et d'un code couleur via LED RGB."
-      }
+        texte: "L'ensemble des sites a fait l'objet d'un <strong>plan d'adressage</strong> : notation CIDR, masque, plage utilisable, adresse réseau et broadcast pour chaque sous-réseau - soit plus d'une <strong>vingtaine de réseaux documentés</strong>, incluant les interconnexions FAI, le réseau maillé du datacenter et le tunnel IPv6. Ce document a servi de référence unique tout au long du déploiement."
+      },
+      {
+        type: "sous-titre",
+        texte: "Digiplex"
+      },
+      {
+        type: "texte",
+        texte: "Le site Digiplex est l'exercice le plus ambitieux du projet. <strong>8 VLANs</strong> distincts (Conception, Commercial, RH, Hotline, Wifi Enterprise, Wifi Invités, Server, Management) sont distribués sur plusieurs étages via des switches configurés en <strong>VTP</strong> et reliés par <strong>EtherChannel</strong>. Le routage inter-VLAN est assuré par un switch L3, chaque interface portant la dernière IP de son réseau. Le VLAN 80 (Management) permet l'accès SSH à chaque switch."
+      },
+      {
+        type: "image",
+        src: "Assets/funky-digiplex.png",
+        caption: "Topologie Digiplex — 8 VLANs, switch L3, contrôleur Wifi, EtherChannel"
+      },
+      {
+        type: "sous-titre",
+        texte: "Datacenter & Tunnel IPv6"
+      },
+      {
+        type: "texte",
+        texte: "Le datacenter héberge un réseau maillé de routeurs FAI interconnectant tous les sites de la ville. Le point technique le plus avancé : la mise en place d'un <strong>tunnel IPv6</strong> entre le routeur eXia (2001:DB8:2000::/64) et le serveur Meraki cloud (2001:DB8:1000::1/64), avec le réseau de tunnel 2001:DB8:3000::/64. Les PC du bureau eXia peuvent atteindre la page d'administration Meraki via son adresse IPv6 — une configuration que peu d'étudiants maîtrisent en première année."
+      },
+      {
+        type: "image",
+        src: "Assets/funky-datacenter.png",
+        caption: "Datacenter & tunnel IPv6 eXia ↔ Meraki cloud"
+      },
     ]
   }
-
+ 
 };
 
 
@@ -318,6 +402,7 @@ function openModal(id) {
   overlay.classList.add("open");
   overlay.removeAttribute("aria-hidden");
   document.body.style.overflow = "hidden";
+  document.getElementById("modal-box").scrollTop = 0;
   
 }
 
